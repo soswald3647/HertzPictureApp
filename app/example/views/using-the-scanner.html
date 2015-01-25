@@ -5,25 +5,26 @@
 </super-navbar>
 
 <div class="padding">
-	<!-- should get the form information from the first screen -->
+	<!-- This would show the actual IC# for the vehicle -->
   <h1><center>IC# 999-99-9999<center></h1>
-  
   <br>
   <br>
- 
   <link rel="stylesheet" type="text/css" href="application.css">
-  <!--<script src="http://localhost/cordova.js"></script>-->
+  
+  <!-- JavaScript to handle the camera operations -->
   <script src="/components/steroids-js/steroids.js"></script>
   <script src="application.js"></script>
   <script type="text/javascript">
+  
   document.addEventListener("deviceready",onDeviceReady,false);
   var num;
-    // PhoneGap is ready to be used!
-    //
+
   function onDeviceReady() {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
     }
+	
+	//Make call to device to open camera
   function getPic(img) {
 	num = img;
     navigator.camera.getPicture(cameraSuccess, onFail, { quality: 50,
@@ -31,24 +32,25 @@
     }); 
   }
   
+      // Picture taken and ready to populate the corresponding table cell
   function cameraSuccess(imageData) {
-    //navigator.notification.alert("got pic!");
 	var image = document.getElementById('image' + num);
 	image.style.display = 'block';
 	image.src = "data:image/jpeg;base64," + imageData;
-
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "https://hertz-picture-backend-oalpha.c9.io/products/1/rent/0", true);
+	xmlhttp.setRequestHeader("Content-type", "image/jpeg");
+	xmlhttp.setRequestHeader("Content-length", "imageData.length");
+	xmlhttp.sendAsBinary(imageData);
   }
 
   function onFail(message) {
     navigator.notification.alert('Failed because: ' + message);
   }
-  
-  
-  </script>
+    </script>
  
-
-
-  <table style="width:100%">
+ <!-- Two column table for comparison of photos -->
+ <table style="width:100%">
   	<tr>
 		<td width="50%"><h1 align="center">Before Rental</h1></td>
 		<td width="50%"><h1 align="center">After Rental</h1></td>
@@ -91,17 +93,4 @@
 		<td width="50%"><button onclick="getPic(18)"><img src="http://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg"style="width:100%;height:100%"  id="image18"></button> </td>
 	</tr>
   </table>
-<!--
-  <div class="card padding">
-    <h3>On iOS</h3>
-    <p class="positive"><strong>Tap and hold on the screen with three fingers.</strong></p>
-    <p>This opens the Scanner context menu.</p>
-  </div>
-
-  <div class="card padding">
-    <h3>On Android</h3>
-    <p class="balanced"><strong>Press the native back button in your app's root view.</strong></p>
-    <p>This will return you to the initial Scan screen.</p>
-  </div>
--->
 </div>
