@@ -6,45 +6,90 @@
 
 <div class="padding">
 	<!-- should get the form information from the first screen -->
-  <h1><center>IC# 999-99-9999test<center></h1>
+  <h1><center>IC# 999-99-9999<center></h1>
   
-  <center>Pictures <b>before</b> rental</center>
-  <!-- insert pictures before rental-->
   <br>
   <br>
+ 
+  <link rel="stylesheet" type="text/css" href="application.css">
+  <!--<script src="http://localhost/cordova.js"></script>-->
+  <script src="/components/steroids-js/steroids.js"></script>
+  <script src="application.js"></script>
+  <script type="text/javascript">
+  document.addEventListener("deviceready",onDeviceReady,false);
+  var num;
+    // PhoneGap is ready to be used!
+    //
+  function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
+  function getPic(img) {
+	num = img;
+    navigator.camera.getPicture(cameraSuccess, onFail, { quality: 50,
+      destinationType: Camera.DestinationType.DATA_URL
+    }); 
+  }
+  
+  function cameraSuccess(imageData) {
+    //navigator.notification.alert("got pic!");
+	var image = document.getElementById('image' + num);
+	image.style.display = 'block';
+	image.src = "data:image/jpeg;base64," + imageData;
+
+  }
+
+  function onFail(message) {
+    navigator.notification.alert('Failed because: ' + message);
+  }
+  
+  
+  </script>
+ 
+
+
   <table style="width:100%">
-	<tr>
-		<td>take picture<a input type="file" accept="image/*;capture=camera"/><img src="http://www.airnorth.com.au/sites/default/files/Car%20hire%20-%20Budget%20Hyundai%20i30%20-%20LR.jpg"></a></td>
-		<td>take picture</td>
+  	<tr>
+		<td width="50%"><h1 align="center">Before Rental</h1></td>
+		<td width="50%"><h1 align="center">After Rental</h1></td>
 	</tr>  
 	<tr>
-		<td></td>
-		<td></td>
+		<td width="50%"><button onclick="getPic(1)" ><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/n.jpg"style="width:100%;height:100%" id="image1"></button></td>
+		<td width="50%"><button onclick="getPic(9)" "><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/n.jpg"style="width:100%;height:100%" id="image9"></button></td>
+	</tr>  
+ 	<tr>
+		<td width="50%"><button onclick="getPic(2)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/ne.jpg"style="width:100%;height:100%"  id="image2"></button></td>
+		<td width="50%"><button onclick="getPic(10)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/ne.jpg"style="width:100%;height:100%"  id="image10"></button></td>
 	</tr>  
 	<tr>
-		<td></td>
-		<td></td>
+		<td width="50%"><button onclick="getPic(3)"><img src= "http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/e.jpg"style="width:100%;height:100%"  id="image3"></button></td>
+		<td width="50%"><button onclick="getPic(11)"><img src= "http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/e.jpg"style="width:100%;height:100%"  id="image11"></button></td>
+		</tr>  
+	<tr>
+		<td width="50%"><button onclick="getPic(4)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/se.jpg"style="width:100%;height:100%"  id="image4" ></button></td>
+		<td width="50%"><button onclick="getPic(12)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/se.jpg"style="width:100%;height:100%"  id="image12"></button></td>
+		</tr>  
+	<tr>
+		<td width="50%"><button onclick="getPic(5)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/s.jpg"style="width:100%;height:100%"  id="image5"></button></td>
+		<td width="50%"><button onclick="getPic(13)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/s.jpg"style="width:100%;height:100%"  id="image13"></button></td>
+		</tr>  
+	<tr>
+		<td width="50%"><button onclick="getPic(6)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/sw.jpg"style="width:100%;height:100%"  id="image6"></button></td>
+		<td width="50%"><button onclick="getPic(14)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/sw.jpg"style="width:100%;height:100%"  id="image14"></button></td>
 	</tr>  
 	<tr>
-		<td></td>
-		<td></td>
+		<td width="50%"><button onclick="getPic(7)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/w.jpg"style="width:100%;height:100%"  id="image7"></button></td>
+		<td width="50%"><button onclick="getPic(15)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/w.jpg"style="width:100%;height:100%"  id="image15"></button></td>
 	</tr>  
 	<tr>
-		<td></td>
-		<td></td>
-	</tr>  
+		<td width="50%"><button onclick="getPic(8)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/nw.jpg"style="width:100%;height:100%"  id="image8"></button></td>
+		<td width="50%"><button onclick="getPic(16)"><img src="http://i29.photobucket.com/albums/c285/stefman21/Hertz%20Hackathon/nw.jpg"style="width:100%;height:100%"  id="image16"></button></td>
+	</tr>
+		
 	<tr>
-		<td></td>
-		<td></td>
-	</tr>  
-	<tr>
-		<td></td>
-		<td></td>
-	</tr>  
-	<tr>
-		<td></td>
-		<td></td>
-	</tr>  
+		<td width="50%"><button onclick="getPic(17)"><img src="http://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg"style="width:100%;height:100%"  id="image17"></button> </td>
+		<td width="50%"><button onclick="getPic(18)"><img src="http://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg"style="width:100%;height:100%"  id="image18"></button> </td>
+	</tr>
   </table>
 <!--
   <div class="card padding">
